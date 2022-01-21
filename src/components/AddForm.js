@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 
 const AddForm = (props) => {
+    const {error} = props
+    console.log(error)
     const [state, setState] = useState({
         name:"",
         position:"",
@@ -25,7 +27,7 @@ const AddForm = (props) => {
         
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-             props.errorMessage('Name, position and nickname fields are required')
+            return props.errorMessage('Name, position and nickname fields are required')
         } else {
             props.addSmurfs({...state, id:Date.now()});
         }
@@ -52,7 +54,7 @@ const AddForm = (props) => {
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
             {
-                props.errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error:{state.error}</div>
+                props.errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error:{error}</div>
             }
             <button onClick={handleSubmit}>Submit Smurf</button>
         </form>

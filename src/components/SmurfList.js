@@ -5,13 +5,15 @@ import { errorMessage } from '../actions';
 
 
  const SmurfList = (props)=> {
-    const {smurfs,isFetching} = props
+    const {smurfs,isFetching,error} = props
     
 
     if (isFetching) {
         return <h1>Loading...</h1>;
     }
-    
+    if (error) {
+        return <p>ERROR!</p>
+    }
 
     return(<div className="listContainer">
         {smurfs.map((smurf)=> {

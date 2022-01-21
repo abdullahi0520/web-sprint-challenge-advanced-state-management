@@ -13,6 +13,7 @@ export const fetchSmurfs = () => {
             
             dispatch(fetchSuccess(res.data))
         }).catch(err=> {
+            
             dispatch(fetchFail(err))
         })
     }
